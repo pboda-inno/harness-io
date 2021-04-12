@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: "{{ include "helmHook.fullname" . }}-test-connection"
   labels:
-    app.kubernetes.io/name: {{ include "helmHook.name" . }}
+    app.kubernetes.io/name: {{ include "helmHook.name" . | lower}}
     helm.sh/chart: {{ include "helmHook.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
