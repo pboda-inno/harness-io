@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "helmHook.fullname" . }}-test-connection"
+  name: "{{ include "helmHook.fullname" . | lower}}-test-connection"
   labels:
     app.kubernetes.io/name: {{ include "helmHook.name" . | lower}}
     helm.sh/chart: {{ include "helmHook.chart" . }}
@@ -14,5 +14,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "helmHook.fullname" . }}:{{ .Values.service.port }}']
+      args:  ['{{ include "helmHook.fullname" . | lower}}:{{ .Values.service.port }}']
   restartPolicy: Never
